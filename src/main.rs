@@ -3,8 +3,9 @@ pub mod environment;
 pub mod cli;
 pub mod patch;
 pub mod clean;
+mod utils;
 
-use clap::Parser;
+use clap::{arg, Parser};
 use cli::{Cli, Commands};
 use environment::{Environment, LogLevel};
 
@@ -15,11 +16,6 @@ fn main() {
         .unwrap_or_else(|| "info".to_string())
         .parse()
         .unwrap_or(LogLevel::Info);
-    match cli.command {
-        Commands::Patch => {
-            patch::create_diff().expect("failed to create diff");
-        }
-    }
     let env = Environment::with_log_level(log_level);
     env.init_logger();
 

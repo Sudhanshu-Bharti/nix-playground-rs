@@ -11,6 +11,7 @@ use crate::environment::{Environment, LogLevel};
 pub struct Cli {
     #[arg(short, long)]
     pub log_level: Option<String>,
+    pub command: ()
 }
 #[derive(Subcommand,Debug)]
 pub enum Commands {
